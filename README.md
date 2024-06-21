@@ -1,6 +1,7 @@
 # OS_kickboard
 2312724 김민지 2313655 김혜원 2312705 임도연 2313933 황유림
-### 구현 기능
+
+</br></br></br>
 helmet_detection 모듈
 ---
  - `html 웹 형성`\
@@ -23,10 +24,21 @@ zoom_start = 12 #초기 확대 수준 설정
 ```python
 folium.Marker #Folium 라이브러리로 마커 추가
 popup=area['name'] #마커 클릭 시 표시되는 팝업에 주차구역 이름 설정
-icon=folium.Icon(color='red') #빨간색 아이콘으로 마커 표시
 ```
- - `사용자의 위치 트래킹`\
-   사용자가 타고 있는 킥보드의 위치를 파란 마커로 설정
- - `주차 시 마커 모양 변경+알림 전송`\
-  -사용자 주차 이벤트 감지 및 서버로 전송\
-  -서버에서 주차 이벤트 감지, 지도의 특정 마커의 모양이나 색상 변경, 관련 사용자에게 알림 전송
+ - `사용자의 위치 트래킹`
+```
+traccar_url = 'http://192.168.219.156:8082/api/positions'  # Traccar 서버의 URL에 맞게 수정
+response = requests.get(traccar_url)  # Traccar 서버의 위치 데이터 요청
+return jsonify(gps_data)  #최신 gps 데이터의 형식 변환 후 HTTP 응답으로 반환
+```
+- `마커 모양 및 색상 변경 + 이벤트 알림 설정`
+```
+gps-marker {  # gps 데이터 위치 마커는 파란색으로 설정
+background-color: blue;
+parking-area-marker {  # 주차구역 위치 마커는 빨간색으로 설정
+background-color: red; 
+L.circle([area.lat, area.lng], {  # 반경 100m 주차구역 원 추가
+                radius: 100
+marker.bindPopup(`Device ID: ${position.deviceId}<br>주차 구역입니다`);  # 주차 구역이 맞다는 이벤트 알림 표시
+marker.bindPopup(`Device ID: ${position.deviceId}<br>주차 구역이 아닙니다. 주차 금지!`);  # 주차 구역이 아니라는 이벤트 알림 표시
+```
