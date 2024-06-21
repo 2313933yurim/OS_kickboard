@@ -27,7 +27,7 @@ popup=area['name'] #마커 클릭 시 표시되는 팝업에 주차구역 이름
 ```
  - `사용자의 위치 트래킹`
 ```
-traccar_url = 'http://192.168.219.156:8082/api/positions'  # Traccar 서버의 URL에 맞게 수정
+traccar_url = 'http://localhost:8082/api/positions'  # Traccar 서버의 URL에 맞게 수정
 response = requests.get(traccar_url)  # Traccar 서버의 위치 데이터 요청
 return jsonify(gps_data)  #최신 gps 데이터의 형식 변환 후 HTTP 응답으로 반환
 ```
