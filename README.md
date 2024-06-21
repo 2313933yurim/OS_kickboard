@@ -32,6 +32,9 @@ response = requests.get(traccar_url)  # Traccar 서버의 위치 데이터 요�
 return jsonify(gps_data)  #최신 gps 데이터의 형식 변환 후 HTTP 응답으로 반환
 ```
 - `마커 모양 및 색상 변경 + 이벤트 알림 설정`
+</br></br></br>
+![KakaoTalk_20240621_140219384](https://github.com/2313933yurim/OS_kickboard/assets/165886079/1da276f4-5bae-45fc-a2f4-d019f73c230c)
+![KakaoTalk_20240621_140219384_01](https://github.com/2313933yurim/OS_kickboard/assets/165886079/078a1c26-cb91-4613-bcf7-e9ea0f5852fa)
 ```
 gps-marker {  # gps 데이터 위치 마커는 파란색으로 설정
 background-color: blue;
